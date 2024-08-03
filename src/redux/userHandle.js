@@ -160,22 +160,21 @@ export const getProductDetails = (id) => async (dispatch) => {
     }
 }; //SYNTAX ERROR for ;
 
-export const getCustomers = (id) => async (dispatch) => {
+export const getCustomers = (id, address) => async (dispatch) => {
     dispatch(getRequest());
 
     try {
         const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/${address}/${id}`);
         if (result.data.message) {
             dispatch(getCustomersListFailed(result.data.message));
-        }
-        else {
+        } else {
             dispatch(customersListSuccess(result.data));
         }
-
     } catch (error) {
         dispatch(getError(error));
     }
-}; //SYNTAX ERROR for ;
+};
+ //SYNTAX ERROR for ;
 
 export const getSpecificProducts = (id, address) => async (dispatch) => {
     dispatch(getRequest());
