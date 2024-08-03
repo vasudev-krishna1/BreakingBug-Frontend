@@ -61,8 +61,7 @@ export const addStuff = (address, fields) => async (dispatch) => {
     } catch (error) {
         dispatch(authError(error));
     }
-    // SYNTAX ERROR ; ARE THERE
-}
+};
 
 export const updateStuff = (fields, id, address) => async (dispatch) => {
 
