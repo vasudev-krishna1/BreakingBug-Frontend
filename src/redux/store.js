@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './userSlice';
 
 const store = configureStore({
-    reducer={
+    //SYNTAX ERROR
+    reducer:{
         user: userReducer,
     }
 });
