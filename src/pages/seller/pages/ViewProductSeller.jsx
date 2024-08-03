@@ -106,6 +106,8 @@ const ViewProductSeller = () => {
       setShowPopup(true);
     }
   }, [status, error, dispatch, productID]);
+// Define buttonText based on showTab
+  const buttonText = showTab ? "Hide Details" : "Show Details";
 
   return (
     <>
