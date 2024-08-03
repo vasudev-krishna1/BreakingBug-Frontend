@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Table, TableBody, TableCell, TableContainer, TableRow, styled} from '@mui/material';
+import {Table, TableBody, TableCell, TableContainer, TableRow, styled, TablePagination } from '@mui/material';
 
 const TableTemplate = ({columns, rows}) => {
   const [page, setPage] = useState(0);
@@ -33,14 +33,14 @@ const TableTemplate = ({columns, rows}) => {
                         <StyledTableCell key={column.Id} align={column.align}>
                           {
                             column.format && typeof value === 'number'
-                              ? column.format(id)
+                              ? column.format(value) //Logical Error
                               : value
                           }
                         </StyledTableCell>
                       );
                     })}
                     <StyledTableCell align="center">
-                      <ButtonHaver row={row}/>
+                      <ButtonHaver row={row} /> //Typo Error
                     </StyledTableCell>
                   </StyledTableRow>
                 );
