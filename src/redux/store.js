@@ -3,7 +3,7 @@ import { userReducer } from './userSlice';
 
 const store = configureStore({
     //SYNTAX ERROR
-    reducers:{
+    reducer:{
         user: userReducer,
     }
 });
