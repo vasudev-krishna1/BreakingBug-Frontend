@@ -49,8 +49,9 @@ const Navbar = () => {
 
     const [isCartOpen, setIsCartOpen] = React.useState(false);
 
-    // Cart
-    const handleOpen Cart = () => {
+
+    //TYPE O ERROR-EXTRA SPACE  IS THERE BETWEEN HANDLEOPEN AND CART
+    const handleOpenCart = () => {
         setIsCartOpen(true);
     };
 
