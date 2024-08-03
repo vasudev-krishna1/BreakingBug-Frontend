@@ -49,7 +49,7 @@ export const addStuff = (address, fields) => async (dispatch) => {
 
     try {
         const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/${address}`, fields, {
-            //SYNTAX ERROR ... IS REMOVED
+            // SYNTAX ERROR ... IS REMOVED
             headers: { 'Content-Type': 'application/json' },
         });
 
@@ -61,7 +61,8 @@ export const addStuff = (address, fields) => async (dispatch) => {
     } catch (error) {
         dispatch(authError(error));
     }
-};
+    // SYNTAX ERROR ; ARE THERE
+}
 
 export const updateStuff = (fields, id, address) => async (dispatch) => {
 
