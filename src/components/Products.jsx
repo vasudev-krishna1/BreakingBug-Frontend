@@ -8,19 +8,21 @@ import { useNavigate } from 'react-router-dom';
 import Popup from './Popup';
 import { addStuff } from '../redux/userHandle';
 
-const Products = ({}) => {
+const Products = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // **Added useNavigate**
 
   const itemsPerPage = 9;
 
-  const { currentRole, responseSearch } = useSelector();
+  const { currentRole, responseSearch } = useSelector(state => state.user); // **Fixed selector**
+
   const [currentPage, setCurrentPage] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
   const [message, setMessage] = useState("");
 
   const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem + itemsPerPage;
-  const currentItems = (indexOfFirstItem, indexOfLastItem);
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage; // **Fixed index calculation**
+  const currentItems = responseSearch.slice(indexOfFirstItem, indexOfLastItem); // **Fixed slicing**
 
   const handleAddToCart = (event, product) => {
     event.stopPropagation();
@@ -29,29 +31,24 @@ const Products = ({}) => {
 
   const handleUpload = (event, product) => {
     event.stopPropagation();
-    console.log(product);
     dispatch(addStuff("ProductCreate", product));
   };
 
   const messageHandler = (event) => {
     event.stopPropagation();
-    setMessage("You have to login or register first")
-    setShowPopup(true)
+    setMessage("You have to login or register first");
+    setShowPopup(true);
   };
 
-  if (!responseSearch) {
-    return <div>Product not found</div>;
+  if (!responseSearch || responseSearch.length === 0) { // **Check for empty product list**
+    return <div>No products found</div>;
   }
 
   return (
     <>
       <ProductGrid container spacing={3}>
         {currentItems.map((data, index) => (
-          <Grid item xs={12} sm={6} md={4}
-            key={index}
-            onClick={() => navigate("/product/view/" + data._id)}
-            sx={{ cursor: "pointer" }}
-          >
+          <Grid item xs={12} sm={6} md={4} key={index} onClick={() => navigate("/product/view/" + data._id)} sx={{ cursor: "pointer" }}>
             <ProductContainer>
               <ProductImage src={data.productImage} />
               <ProductName>{data.productName}</ProductName>
@@ -59,25 +56,16 @@ const Products = ({}) => {
               <PriceCost>₹{data.price.cost}</PriceCost>
               <PriceDiscount>{data.price.discountPercent}% off</PriceDiscount>
               <AddToCart>
-                {currentRole === "Customer" &&
-                  <>
-                    <BasicButton
-                      onClick={(event) => handleAddToCart(event, data)}
-                    >
-                      Add To Cart
-                    </BasicButton>
-                  </>
-                }
-                {currentRole === "Shopcart" &&
-                  <>
-                    <BasicButton
-                      onClick={(event) => handleUpload(event, data)}
-                    >
-                      Upload
-                    </BasicButton>
-                  </>
-                }
-
+                {currentRole === "Customer" && (
+                  <BasicButton onClick={(event) => handleAddToCart(event, data)}>
+                    Add To Cart
+                  </BasicButton>
+                )}
+                {currentRole === "Shopcart" && (
+                  <BasicButton onClick={(event) => handleUpload(event, data)}>
+                    Upload
+                  </BasicButton>
+                )}
               </AddToCart>
             </ProductContainer>
           </Grid>
@@ -86,16 +74,16 @@ const Products = ({}) => {
 
       <Container sx={{ mt: 10, mb: 10, display: "flex", justifyContent: 'center', alignItems: "center" }}>
         <Pagination
-          count={Math.ceil(productData.length / itemsPerPage)}
+          count={Math.ceil(responseSearch.length / itemsPerPage)} // **Fixed reference to responseSearch**
           page={currentPage}
+          onChange={(event, value) => setCurrentPage(value)} // **Added onChange handler**
           color="secondary"
-
         />
       </Container>
 
       <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
     </>
-  )
+  );
 };
 
 export default Products;
