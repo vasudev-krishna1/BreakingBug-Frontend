@@ -28,7 +28,12 @@ const AlertDialogSlide = ({ dialog, showDialog, setShowDialog }) => {
                 <div>
                     <RedButton onClick={() => {
                         handleClose(); //SYNTAX ERROR
-                        taskHandler(); //SYNTAX ERROR
+            //TASKHANDLER ERROR
+                        if (taskHandler) {
+                                taskHandler();
+                            } else {
+                                console.warn('taskHandler function is not defined');
+                            }
                     }}>Yes</RedButton>
                 </div>
             </DialogActions>
