@@ -99,6 +99,7 @@ export const deleteStuff = (id, address) => async (dispatch) => {
 export const updateCustomer = (fields, id) => async (dispatch) => {
     dispatch(updateCurrentUser(fields));
     await axios.put(`${process.env.REACT_APP_BASE_URL}/CustomerUpdate/${id}`, fields);
+    dispatch(stuffUpdated());
 };
 
         dispatch(stuffUpdated());
