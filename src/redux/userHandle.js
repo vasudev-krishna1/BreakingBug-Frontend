@@ -79,7 +79,7 @@ export const updateStuff = (fields, id, address) => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
 
 export const deleteStuff = (id, address) => async (dispatch) => {
     dispatch(getRequest());
@@ -94,7 +94,7 @@ export const deleteStuff = (id, address) => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
 
 export const updateCustomer = (fields, id) => async (dispatch) => {
     dispatch(updateCurrentUser(fields));
@@ -125,7 +125,7 @@ export const getProductsbySeller = (id) => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
 
 export const getProducts = () => async (dispatch) => {
     dispatch(getRequest());
@@ -141,7 +141,7 @@ export const getProducts = () => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
 
 export const getProductDetails = (id) => async (dispatch) => {
     dispatch(getRequest());
@@ -158,7 +158,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
 
 export const getCustomers = (id) => async (dispatch) => {
     dispatch(getRequest());
@@ -175,7 +175,7 @@ export const getCustomers = (id) => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
 
 export const getSpecificProducts = (id, address) => async (dispatch) => {
     dispatch(getRequest());
@@ -191,7 +191,7 @@ export const getSpecificProducts = (id, address) => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
 
 export const getSearchedProducts = (address, key) => async (dispatch) => {
     dispatch(getRequest());
@@ -208,4 +208,4 @@ export const getSearchedProducts = (address, key) => async (dispatch) => {
     } catch (error) {
         dispatch(getError(error));
     }
-}
+}; //SYNTAX ERROR for ;
